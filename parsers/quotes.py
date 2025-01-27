@@ -1,3 +1,4 @@
+from selenium.webdriver.common.by import By
 from locators.quote_locators import QuoteLocators
 
 
@@ -18,14 +19,14 @@ class QuoteParser:
     @property
     def quote(self):
         locator = QuoteLocators.QUOTE
-        return self.parent.select_one(locator).string
+        return self.parent.find_element(By.CSS_SELECTOR, locator).text
 
     @property
     def author(self):
         locator = QuoteLocators.AUTHOR
-        return self.parent.select_one(locator).string
+        return self.parent.find_element(By.CSS_SELECTOR, locator).text
 
     @property
     def tags(self):
         locator = QuoteLocators.TAG
-        return [tag.string for tag in self.parent.select_one(locator)]
+        return [tag.string for tag in self.parent.find_elements(By.CSS_SELECTOR, locator)]
