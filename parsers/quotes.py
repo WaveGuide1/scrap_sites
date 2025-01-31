@@ -1,6 +1,8 @@
+import logging
 from selenium.webdriver.common.by import By
 from locators.quote_locators import QuoteLocators
 
+logger = logging.getLogger('scraping.quote_parser')
 
 class QuoteParser:
     """
@@ -18,13 +20,19 @@ class QuoteParser:
 
     @property
     def quote(self):
+        logger.debug('Finding a quote...')
         locator = QuoteLocators.QUOTE
-        return self.parent.find_element(By.CSS_SELECTOR, locator).text
+        quote_text = self.parent.find_element(By.CSS_SELECTOR, locator).text
+        logger.debug(f'Found quote: {quote_text}')
+        return quote_text
 
     @property
     def author(self):
+        logger.debug('Finding an author...')
         locator = QuoteLocators.AUTHOR
-        return self.parent.find_element(By.CSS_SELECTOR, locator).text
+        found_author = self.parent.find_element(By.CSS_SELECTOR, locator).text
+        logger.debug(f'Found author: {found_author}')
+        return found_author
 
     @property
     def tags(self):
