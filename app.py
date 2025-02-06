@@ -9,7 +9,7 @@ logging.basicConfig(format='%(asctime)s %(levelname)-8s [%(filename)s:%(lineno)d
 
 logger = logging.getLogger('scraping')
 
-logger.info('Loading Quotes from celebrities.......')
+logger.info('Loading Quotes from celebrities...')
 
 try:
     author = input('Enter your favourite author: ')
